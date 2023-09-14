@@ -32,10 +32,6 @@ jobs:
       - name: Run tests
         run: |
           cd ./python
-          python -m venv venv
-          cd venv
-          ls
-          source venv/Scripts/activate
           pip install --upgrade pip
           pip install -r requirements.txt
           pytest
