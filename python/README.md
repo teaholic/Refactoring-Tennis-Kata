@@ -6,9 +6,9 @@ On Windows, please run the following from Git Bash terminal:
 
 ### Setup environment
 ```bash
-python -m pip install --upgrade pip
 python -m venv venv
 source ./venv/Scripts/activate
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
