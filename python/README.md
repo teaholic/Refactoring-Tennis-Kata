@@ -16,3 +16,10 @@ pip install -r requirements.txt
 ```bash
 python -m pytest
 ```
+
+## Code Smells
+
+These implementations in `tennis1.py` have a bad smell:
+- `tempScore` (line 19) is a *temporary field* (object-orientation abuser)
+- lines 20-48 have nested *switch statements* (object-orientation abuser)
+- `score` method is quite a *long method* (bloater)
