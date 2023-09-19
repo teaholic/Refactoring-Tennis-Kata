@@ -48,3 +48,7 @@ From [Refactoring Guru](https://refactoring.guru/smells/switch-statements):
 ### Step #1 - I used Extract class to treat a temporary field tempScore. 
 
 After this step, I noticed that tempScore is repeated twice now. Also, p1points and p2points are temporary values too. Finally, the result type is anemic - hidden in the switch statements of the score method (primitive obsession).
+
+### Step #2 - I used more of Extract class to reduce the number of lines in the score method (long method). 
+
+I notice that the method score of the new three classes is executed if a condition is met. This is a good opportunity to refactor with a Chain of Responsibility pattern in the next iteration.

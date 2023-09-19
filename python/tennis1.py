@@ -1,6 +1,31 @@
 # -*- coding: utf-8 -*-
 
-class ScoreService:
+class EqualScoreService:
+
+    def score(self, p1points) -> str:
+        return {
+                0 : "Love-All",
+                1 : "Fifteen-All",
+                2 : "Thirty-All",
+            }.get(p1points, "Deuce")
+
+
+class DifferentScoreService:
+
+    def score(self, p1points, p2points) -> str:
+        minusResult = p1points - p2points
+        if (minusResult == 1):
+            result = "Advantage player1"
+        elif (minusResult == -1):
+            result = "Advantage player2"
+        elif (minusResult >= 2):
+            result = "Win for player1"
+        else:
+            result = "Win for player2"
+        return result
+
+
+class GenericScoreService:
     tempScore=0
 
     def score(self, p1points, p2points) -> str:
@@ -26,7 +51,9 @@ class TennisGame1:
         self.player2Name = player2Name
         self.p1points = 0
         self.p2points = 0
-        self.service = ScoreService()
+        self.equal_score_service = EqualScoreService()
+        self.different_score_service = DifferentScoreService()
+        self.default_service = GenericScoreService()
 
     def won_point(self, playerName):
         if playerName == self.player1Name:
@@ -37,21 +64,9 @@ class TennisGame1:
     def score(self):
         result = ""
         if (self.p1points==self.p2points):
-            result = {
-                0 : "Love-All",
-                1 : "Fifteen-All",
-                2 : "Thirty-All",
-            }.get(self.p1points, "Deuce")
+            result = self.equal_score_service.score(self.p1points)
         elif (self.p1points>=4 or self.p2points>=4):
-            minusResult = self.p1points-self.p2points
-            if (minusResult==1):
-                result ="Advantage player1"
-            elif (minusResult ==-1):
-                result ="Advantage player2"
-            elif (minusResult>=2):
-                result = "Win for player1"
-            else:
-                result ="Win for player2"
+            result = self.different_score_service.score(self.p1points, self.p2points)
         else:
-            result = self.service.score(self.p1points, self.p2points)
+            result = self.default_service.score(self.p1points, self.p2points)
         return result
