@@ -42,3 +42,9 @@ From [Refactoring Guru](https://refactoring.guru/smells/switch-statements):
 
 - Temporary fields and all code operating on them can be put in a separate class via **Extract Class**. In other words, you’re creating a method object, achieving the same result as if you would perform **Replace Method with Method Object**.
 - Introduce **Null Object** and integrate it in place of the conditional code which was used to check the temporary field values for existence.
+
+## My refactoring process
+
+### Step #1 - I used Extract class to treat a temporary field tempScore. 
+
+After this step, I noticed that tempScore is repeated twice now. Also, p1points and p2points are temporary values too. Finally, the result type is anemic - hidden in the switch statements of the score method (primitive obsession).
