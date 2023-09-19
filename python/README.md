@@ -62,3 +62,7 @@ I created an abstract class ScoringService with can_handle and score methods. I 
 In the TennisGame class, I added a service_list parameter with a list of ScoringServices, where the last service is a default service to use a fallback if all other services can't handle the player scores. I refactored the score method to iterate on each service in the list, first checking if that service can_handle the player scores, then returning a new score. Cleanups include removing unnecessary return statements and result string.
 
 I notice that the score type, a string, is central in the tennis game narrative, but still somehow hidden in the implementation (primitive obsession).
+
+### Step #5 - Making Points explicit in GenericScoringService
+
+This action helps in two ways. First, the score method is a one liner now: the switch statement and the temporary value are removed. Second, implementation namings (POINTS) can be reused to tell a story and it's easier understand what happens in the GenericScoringService class.

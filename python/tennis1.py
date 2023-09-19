@@ -44,26 +44,18 @@ class DifferentScoringService(ScoringService):
 
 
 class GenericScoringService(ScoringService):
+    POINTS = {
+        0: "Love",
+        1: "Fifteen",
+        2: "Thirty",
+        3: "Forty",
+    }
 
     def can_handle(self, p1points, p2points) -> bool:
         return True
 
     def score(self, p1points, p2points) -> str:
-        tempScore = 0
-        result = ""
-        for i in range(1, 3):
-            if (i == 1):
-                tempScore = p1points
-            else:
-                result += "-"
-                tempScore = p2points
-            result += {
-                0: "Love",
-                1: "Fifteen",
-                2: "Thirty",
-                3: "Forty",
-            }[tempScore]
-        return result
+        return f"{self.POINTS[p1points]}-{self.POINTS[p2points]}"
 
 
 class TennisGame1:
