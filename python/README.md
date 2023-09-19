@@ -52,3 +52,13 @@ After this step, I noticed that tempScore is repeated twice now. Also, p1points 
 ### Step #2 - I used more of Extract class to reduce the number of lines in the score method (long method). 
 
 I notice that the method score of the new three classes is executed if a condition is met. This is a good opportunity to refactor with a Chain of Responsibility pattern in the next iteration.
+
+### Step #3 - I started implementing Chain of Responsibility pattern
+
+I created an abstract class ScoringService with can_handle and score methods. I changed the specific implementations so that the method signature stays the same (Liskov principle).
+
+### Step #4 - I implemented Chain of Responsibility pattern
+
+In the TennisGame class, I added a service_list parameter with a list of ScoringServices, where the last service is a default service to use a fallback if all other services can't handle the player scores. I refactored the score method to iterate on each service in the list, first checking if that service can_handle the player scores, then returning a new score. Cleanups include removing unnecessary return statements and result string.
+
+I notice that the score type, a string, is central in the tennis game narrative, but still somehow hidden in the implementation (primitive obsession).

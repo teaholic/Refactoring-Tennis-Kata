@@ -2,7 +2,7 @@
 from abc import ABC, abstractmethod
 
 
-class ScoreService(ABC):
+class ScoringService(ABC):
 
     @abstractmethod
     def can_handle(self, p1points, p2points) -> bool:
@@ -13,10 +13,10 @@ class ScoreService(ABC):
         pass
 
 
-class EqualScoreService(ScoreService):
+class EqualScoringService(ScoringService):
 
     def can_handle(self, p1points, p2points) -> bool:
-        return p1points==p2points
+        return p1points == p2points
 
     def score(self, p1points, p2points) -> str:
         return {
@@ -26,25 +26,24 @@ class EqualScoreService(ScoreService):
             }.get(p1points, "Deuce")
 
 
-class DifferentScoreService:
+class DifferentScoringService(ScoringService):
 
     def can_handle(self, p1points, p2points) -> bool:
-        return p1points>=4 or p2points>=4
+        return p1points >= 4 or p2points >= 4
 
     def score(self, p1points, p2points) -> str:
         minusResult = p1points - p2points
         if (minusResult == 1):
-            result = "Advantage player1"
+            return "Advantage player1"
         elif (minusResult == -1):
-            result = "Advantage player2"
+            return "Advantage player2"
         elif (minusResult >= 2):
-            result = "Win for player1"
+            return "Win for player1"
         else:
-            result = "Win for player2"
-        return result
+            return "Win for player2"
 
 
-class GenericScoreService:
+class GenericScoringService(ScoringService):
 
     def can_handle(self, p1points, p2points) -> bool:
         return True
@@ -74,9 +73,7 @@ class TennisGame1:
         self.player2Name = player2Name
         self.p1points = 0
         self.p2points = 0
-        self.equal_score_service = EqualScoreService()
-        self.different_score_service = DifferentScoreService()
-        self.default_service = GenericScoreService()
+        self.services = [EqualScoringService(), DifferentScoringService(), GenericScoringService()]
 
     def won_point(self, playerName):
         if playerName == self.player1Name:
@@ -85,11 +82,6 @@ class TennisGame1:
             self.p2points += 1
 
     def score(self):
-        result = ""
-        if self.equal_score_service.can_handle(self.p1points, self.p2points): #self.p1points==self.p2points):
-            result = self.equal_score_service.score(self.p1points, self.p2points)
-        elif self.different_score_service.can_handle(self.p1points, self.p2points): #(self.p1points>=4 or self.p2points>=4):
-            result = self.different_score_service.score(self.p1points, self.p2points)
-        else:
-            result = self.default_service.score(self.p1points, self.p2points)
-        return result
+        for service in self.services:
+            if service.can_handle(self.p1points, self.p2points):
+                return service.score(self.p1points, self.p2points)
