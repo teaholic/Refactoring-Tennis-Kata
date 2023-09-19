@@ -36,17 +36,17 @@ test_cases = [
     (4, 2, "Win for player1", 'player1', 'player2'),
     (2, 4, "Win for player2", 'player1', 'player2'),
 
-    (4, 3, "Advantage player1", 'player1', 'player2'),
-    (3, 4, "Advantage player2", 'player1', 'player2'),
-    (5, 4, "Advantage player1", 'player1', 'player2'),
-    (4, 5, "Advantage player2", 'player1', 'player2'),
-    (15, 14, "Advantage player1", 'player1', 'player2'),
-    (14, 15, "Advantage player2", 'player1', 'player2'),
+    (4, 3, "Advantage Tom", 'Tom', 'Jane'),
+    (3, 4, "Advantage Jane", 'Tom', 'Jane'),
+    (5, 4, "Advantage Tom", 'Tom', 'Jane'),
+    (4, 5, "Advantage Jane", 'Tom', 'Jane'),
+    (15, 14, "Advantage Tom", 'Tom', 'Jane'),
+    (14, 15, "Advantage Jane", 'Tom', 'Jane'),
 
-    (6, 4, 'Win for player1', 'player1', 'player2'),
-    (4, 6, 'Win for player2', 'player1', 'player2'),
-    (16, 14, 'Win for player1', 'player1', 'player2'),
-    (14, 16, 'Win for player2', 'player1', 'player2'),
+    (6, 4, 'Win for Tom', 'Tom', 'Jane'),
+    (4, 6, 'Win for Jane', 'Tom', 'Jane'),
+    (16, 14, 'Win for Tom', 'Tom', 'Jane'),
+    (14, 16, 'Win for Jane', 'Tom', 'Jane'),
 
 ]
 

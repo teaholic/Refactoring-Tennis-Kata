@@ -72,15 +72,15 @@ class TennisGame2:
             result = P1res + "-" + P2res
 
         if (self.p1points > self.p2points and self.p2points >= 3):
-            result = "Advantage player1"
+            result = f"Advantage {self.player1Name}"
 
         if (self.p2points > self.p1points and self.p1points >= 3):
-            result = "Advantage player2"
+            result = f"Advantage {self.player2Name}"
 
         if (self.p1points>=4 and self.p2points>=0 and (self.p1points-self.p2points)>=2):
-            result = "Win for player1"
+            result = f"Win for {self.player1Name}"
         if (self.p2points>=4 and self.p1points>=0 and (self.p2points-self.p1points)>=2):
-            result = "Win for player2"
+            result = f"Win for {self.player2Name}"
         return result
 
     def SetP1Score(self, number):
