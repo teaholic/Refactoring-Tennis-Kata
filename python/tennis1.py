@@ -27,6 +27,9 @@ class EqualScoringService(ScoringService):
 
 
 class DifferentScoringService(ScoringService):
+    def __init__(self, player1: str, player2: str):
+        self.player1 = player1
+        self.player2 = player2
 
     def can_handle(self, p1points, p2points) -> bool:
         return p1points >= 4 or p2points >= 4
@@ -34,13 +37,13 @@ class DifferentScoringService(ScoringService):
     def score(self, p1points, p2points) -> str:
         minusResult = p1points - p2points
         if (minusResult == 1):
-            return "Advantage player1"
+            return f"Advantage {self.player1}"
         elif (minusResult == -1):
-            return "Advantage player2"
+            return f"Advantage {self.player2}"
         elif (minusResult >= 2):
-            return "Win for player1"
+            return f"Win for {self.player1}"
         else:
-            return "Win for player2"
+            return f"Win for {self.player2}"
 
 
 class GenericScoringService(ScoringService):
@@ -65,7 +68,7 @@ class TennisGame1:
         self.player2Name = player2Name
         self.p1points = 0
         self.p2points = 0
-        self.services = [EqualScoringService(), DifferentScoringService(), GenericScoringService()]
+        self.services = [EqualScoringService(), DifferentScoringService(player1=self.player1Name, player2=self.player2Name), GenericScoringService()]
 
     def won_point(self, playerName):
         if playerName == self.player1Name:
